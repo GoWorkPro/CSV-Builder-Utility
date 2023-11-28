@@ -16,20 +16,24 @@
             display: block;
             color: white;
             border-radius: 10px;
-            padding: 10px
+            padding: 20px 40px;
+            text-wrap: nowrap !important;
+            overflow-x: auto;
+            white-space: pre-line;
             /* Add any other styling you want */
         }
 
         .img {
             text-align: center;
-            margin-block: 30px
+            margin-block: 30px;
         }
 
             .img img {
                 max-width: 800px;
                 border-radius: 5px;
                 box-shadow: 0 0 10px 10px #e1dede;
-                cursor: pointer
+                cursor: pointer;
+                max-width: 100%
             }
 
                 .img img:hover {
@@ -101,6 +105,12 @@
                     <li class="nav-item">
                         <a class="nav-link" href="csv-description.html">Documentation</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" target="_blank" href="https://www.nuget.org/packages/GoWorkPro.CSVBuilder/">Installation</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-warning" href="donate-us.html">Donate Us</a>
+                    </li>
                 </ul>
                 <span class="navbar-text">
                     by &nbsp;<a target="_blank" class="text-primary text-decoration-none fw-bold" href="https://goworkpro.com">GoWorkPro</a>
@@ -119,7 +129,7 @@
                     { "1", "Test Test" }, new List<string>
                         { "2", "Test Male 1", "Male" }, new List<string>
                             { "2", "Test Female 1", "Female","+09298374" }).Build()){
-                            csvBuilder.SaveAsFile("Greate.csv");
+                            &nbsp;&nbsp;   csvBuilder.SaveAsFile("Greate.csv");
                             }
         </code>
 
@@ -158,21 +168,21 @@
 
             DataTable actualDataset = new DataTable("SampleDataActual");
 
-            actualDataset.Columns.Add("Sr. <br /> ", typeof(int));
+            actualDataset.Columns.Add("Sr.", typeof(int));
             actualDataset.Columns.Add("Branch", typeof(string));
             actualDataset.Columns.Add("Branch Code", typeof(int));
             actualDataset.Columns.Add("Name", typeof(string));
             actualDataset.Columns.Add("Email", typeof(string));
-            actualDataset.Columns.Add("Mobile <br />", typeof(long));
+            actualDataset.Columns.Add("Mobile", typeof(long));
             actualDataset.Columns.Add("Membership Created Date", typeof(string));
 
             actualDataset.Rows.Add(1, "Branch 1", 82, "Alex Will", "Alw@yopmail.com", 44578963219, "18.02.2022 - 11:00AM");
-            actualDataset.Rows.Add(2, "Branch 1", 82, "eqw Will <br />", "eqw@yopmail.com", 4324, "18.02.2022 - 11:00AM");
-            actualDataset.Rows.Add(3, "Branch 1", 82, "eqw Will", "32@yopmail.com <br />", 4455353478963219, "18.02.2022 - 11:00AM");
+            actualDataset.Rows.Add(2, "Branch 1", 82, "eqw Will", "eqw@yopmail.com", 4324, "18.02.2022 - 11:00AM");
+            actualDataset.Rows.Add(3, "Branch 1", 82, "eqw Will", "32@yopmail.com", 4455353478963219, "18.02.2022 - 11:00AM");
 
             using (var csvBuilder = CsvBuilder.Datasets(dataTableFilter, companyInfo, actualDataset).Build(2))
             {
-            csvBuilder.SaveAsFile("Greate.csv");
+            &nbsp;&nbsp;csvBuilder.SaveAsFile("Greate.csv");
             }
         </code>
         <ol>
@@ -197,9 +207,9 @@
             {
             if (tableIndex == 2 && column == 1 && row >= 2)
             {
-            return (row - 1).ToString();
+            &nbsp;&nbsp; return (row - 1).ToString();
             }
-            return $"\"{Convert.ToString(val).Replace("\"", "\"\"")}\"";
+            &nbsp;&nbsp;  return $"\"{Convert.ToString(val).Replace("\"", "\"\"")}\"";
             };
 
         </code>
@@ -222,7 +232,7 @@
         <div class="navbar navbar-expand-lg bg-body-tertiary p-4">
             <div class="container">
                 <div>
-                    � 2023 <a href="https://goworkpro.com"> GoWorkPro</a>. All rights reserved. CSVBuilder is a trademark of GoWorkPro. Unauthorized use or reproduction of this software is prohibited.
+                     2023 <a href="https://goworkpro.com"> GoWorkPro</a>. All rights reserved. CSVBuilder is a trademark of GoWorkPro. Unauthorized use or reproduction of this software is prohibited.
                 </div>
             </div>
         </div>
@@ -233,7 +243,7 @@
             // Highlight instances of a specific class in the code block
             highlightInstances("CsvBuilder");
             highlightInstances("DataTable");
-           
+
             highlightInstances("new", 'highlight-blue');
             highlightInstances("false", 'highlight-blue');
             highlightInstances("true", 'highlight-blue');
@@ -248,7 +258,7 @@
             highlightInstances("Add", 'highlight-methods');
             highlightInstances("SaveAsFile", 'highlight-methods');
             highlightInstances("ToString", 'highlight-methods');
-           
+
             // Add more classes as needed
         });
 
