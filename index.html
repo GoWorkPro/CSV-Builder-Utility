@@ -1,0 +1,297 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Excel Builder </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        body {
+            font-family: Arial
+        }
+
+        .code {
+            white-space: pre-wrap;
+            font-family: 'Courier New', monospace;
+            background: #1E1E1E;
+            display: block;
+            color: white;
+            border-radius: 10px;
+            padding: 10px
+            /* Add any other styling you want */
+        }
+
+        .img {
+            text-align: center;
+            margin-block: 30px
+        }
+
+            .img img {
+                max-width: 800px;
+                border-radius: 5px;
+                box-shadow: 0 0 10px 10px #e1dede;
+                cursor: pointer
+            }
+
+                .img img:hover {
+                    transition: 0.4s ease-in-out;
+                    transform: scale(1.4);
+                }
+
+        .highlight {
+            color: #1F7D8F;
+            font-weight: bold;
+            cursor: pointer
+        }
+
+        .highlight-blue {
+            color: #4599d6;
+            font-weight: bold;
+            cursor: pointer
+        }
+
+        .highlight-string {
+            color: #D69D80;
+            font-weight: bold;
+            cursor: pointer
+        }
+
+        .highlight-methods {
+            color: #D7B35C;
+            font-weight: bold;
+            cursor: pointer
+        }
+
+        .highlight-brace {
+            font-weight: bolder;
+            font-size: 20px;
+            color: lightgray
+        }
+
+        .highlight-dot {
+            font-weight: bold;
+            color: #92c8ef
+        }
+
+        .highlight-comment {
+            color: #449D4A
+        }
+
+        p {
+            margin-top: 10px;
+        }
+
+        h1 {
+            margin-top: 20px
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg fixed-top" style="background-color: #e3f2fd;">
+        <div class="container">
+            <a class="navbar-brand" href="#"><img src="csv-icon.png" width="40" /> CSVBuilder</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="index.html">Examples</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="csv-description.html">Documentation</a>
+                    </li>
+                </ul>
+                <span class="navbar-text">
+                    by &nbsp;<a target="_blank" class="text-primary text-decoration-none fw-bold" href="https://goworkpro.com">GoWorkPro</a>
+                </span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5 pt-5">
+        <h1>Example #1</h1>
+        <p>Creating CSV using  Custom Rows </p>
+        <code class="code">
+            using(var csvBuilder = CsvBuilder.Datasets(
+            new List<string>
+                { "SR.", "Name", "Gender","Phone Number" }, new List<string>
+                    { "1", "Test Test" }, new List<string>
+                        { "2", "Test Male 1", "Male" }, new List<string>
+                            { "2", "Test Female 1", "Female","+09298374" }).Build()){
+                            csvBuilder.SaveAsFile("Greate.csv");
+                            }
+        </code>
+
+        <ol>
+            <li>
+                <p><strong><code>CsvBuilder.Datasets(...)</code></strong>: This is a static factory method of the <code>CsvBuilder</code> class. It creates an instance of <code>CsvBuilder</code> using the provided data. The data is passed as lists of strings, where each list represents a row in the CSV. The first list is assumed to contain the header/column names.</p>
+            </li>
+            <li><p><strong><code>using (...)</code></strong>: The <code>using</code> statement is used to ensure that the <code>csvBuilder</code> object is properly disposed of when it goes out of scope. This is important because the <code>CsvBuilder</code> class implements <code>IDisposable</code> and works with resources (a <code>MemoryStream</code> in this case). The <code>using</code> statement ensures that the <code>Dispose</code> method is called when the block is exited, releasing any resources held by <code>csvBuilder</code>.</p></li>
+            <li><p><strong><code>csvBuilder.Build()</code></strong>: This method is called on the <code>csvBuilder</code> instance to construct the CSV data. It takes an optional array of column indices to be included in the CSV. In this case, no specific columns are selected, so it includes all columns.</p></li>
+            <li><p><strong><code>csvBuilder.SaveAsFile("Great.csv")</code></strong>: This method is called to save the generated CSV data to a file named "Great.csv". The <code>SaveAsFile</code> method takes a file path as a parameter.</p></li>
+        </ol>
+
+        <h1>Example #2</h1>
+        <p>Creating three DataTable instances (dataTableFilter, companyInfo, and actualDataset), populating them with data, and then using the CsvBuilder class to generate and save a CSV file. Let's break down the code:</p>
+        <code class="code">
+            DataTable dataTableFilter = new DataTable("SampleDataFilters");
+            //Add the column names
+            dataTableFilter.Columns.Add("column1", typeof(string));
+
+            dataTableFilter.Rows.Add("All Customers");
+            dataTableFilter.Rows.Add("Search Filter");
+            dataTableFilter.Rows.Add("Customer Type: All");
+            dataTableFilter.Rows.Add("Customer Status: Active");
+            dataTableFilter.Rows.Add("From: 03 - 01 - 2022 To: 03 - 11 - 2023");
+
+            DataTable companyInfo = new DataTable("company");
+            //Add the column names
+            companyInfo.Columns.Add("column1", typeof(string));
+            companyInfo.Rows.Add("London");
+            companyInfo.Rows.Add("Add01a, City");
+            companyInfo.Rows.Add("London, sef83n");
+            companyInfo.Rows.Add("T: +441234567890");
+            companyInfo.Rows.Add("E:");
+
+
+
+            DataTable actualDataset = new DataTable("SampleDataActual");
+
+            actualDataset.Columns.Add("Sr. <br /> ", typeof(int));
+            actualDataset.Columns.Add("Branch", typeof(string));
+            actualDataset.Columns.Add("Branch Code", typeof(int));
+            actualDataset.Columns.Add("Name", typeof(string));
+            actualDataset.Columns.Add("Email", typeof(string));
+            actualDataset.Columns.Add("Mobile <br />", typeof(long));
+            actualDataset.Columns.Add("Membership Created Date", typeof(string));
+
+            actualDataset.Rows.Add(1, "Branch 1", 82, "Alex Will", "Alw@yopmail.com", 44578963219, "18.02.2022 - 11:00AM");
+            actualDataset.Rows.Add(2, "Branch 1", 82, "eqw Will <br />", "eqw@yopmail.com", 4324, "18.02.2022 - 11:00AM");
+            actualDataset.Rows.Add(3, "Branch 1", 82, "eqw Will", "32@yopmail.com <br />", 4455353478963219, "18.02.2022 - 11:00AM");
+
+            using (var csvBuilder = CsvBuilder.Datasets(dataTableFilter, companyInfo, actualDataset).Build(2))
+            {
+            csvBuilder.SaveAsFile("Greate.csv");
+            }
+        </code>
+        <ol>
+            <li><p><strong><code>DataTable</code> Creation and Population</strong>: You create three <code>DataTable</code> instances (<code>dataTableFilter</code>, <code>companyInfo</code>, and <code>actualDataset</code>) and add columns and rows to them.</p></li>
+            <li><p><strong><code>CsvBuilder.Datasets(...)</code></strong>: You use the <code>CsvBuilder</code> class to create an instance and pass the three <code>DataTable</code> instances as parameters.</p></li>
+            <li><p><strong><code>.Build(2)</code></strong>: You call the <code>Build</code> method on the <code>CsvBuilder</code> instance, specifying that only the columns with index 2 should be included in the CSV.</p></li>
+            <li>
+                <p><strong><code>csvBuilder.SaveAsFile("Great.csv")</code></strong>: You save the generated CSV data to a file named "Great.csv".</p>
+            </li>
+        </ol>
+
+        <h1>Example #3</h1>
+
+        <code class="code">
+            var builder = CsvBuilder.Datasets(filters, companyInformation, actualDataSet, calculationDataset);
+
+            // Here, you're creating an instance of the CsvBuilder class using the Datasets method,
+            // and you're passing four DataTable instances (filters, companyInformation, actualDataSet,
+            // and calculationDataset) as parameters.
+
+            builder.ValueRenderEvent += (val, type, column, row, tableIndex, actualRowNumber) =>
+            {
+            if (tableIndex == 2 && column == 1 && row >= 2)
+            {
+            return (row - 1).ToString();
+            }
+            return $"\"{Convert.ToString(val).Replace("\"", "\"\"")}\"";
+            };
+
+        </code>
+
+        <p>
+            You're subscribing to the ValueRenderEvent event of the CsvBuilder instance (builder). This event is raised when the CSV data is being rendered for each value. The event handler is implemented as a lambda expression.
+        </p>
+        <ul>
+            <li>
+                <strong>Event Handler Logic</strong>:<ul>
+                    <li>
+                        <code>if (tableIndex == 2 &amp;&amp; column == 1 &amp;&amp; row &gt;= 2)</code>: This condition checks if the current value belongs to the second table (<code>tableIndex == 2</code>), is in the first column (<code>column == 1</code>), and is not in the header row (<code>row &gt;= 2</code>). If these conditions are met, it returns the modified value <code>(row - 1).ToString()</code>. This logic seems to be adjusting the values in the first column for the second table, subtracting 1 from the row number.
+                    </li>
+                    <li><code>return $"\"{Convert.ToString(val).Replace("\"", "\"\"")}\"";</code>: For other cases, it returns the original value enclosed in double quotes, and it handles escaping double quotes within the value by replacing them with double double-quotes (<code>\"\"</code>).</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <footer class="mt-5">
+        <div class="navbar navbar-expand-lg bg-body-tertiary p-4">
+            <div class="container">
+                <div>
+                    � 2023 <a href="https://goworkpro.com"> GoWorkPro</a>. All rights reserved. CSVBuilder is a trademark of GoWorkPro. Unauthorized use or reproduction of this software is prohibited.
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            highlightStringLiterals()
+            // Highlight instances of a specific class in the code block
+            highlightInstances("CsvBuilder");
+            highlightInstances("DataTable");
+           
+            highlightInstances("new", 'highlight-blue');
+            highlightInstances("false", 'highlight-blue');
+            highlightInstances("true", 'highlight-blue');
+            highlightInstances("return", 'highlight-blue');
+            highlightInstances("if", 'highlight-blue');
+            highlightInstances("using", 'highlight-blue');
+            highlightInstances("int", 'highlight-blue');
+            highlightInstances("var", 'highlight-blue');
+            highlightInstances("typeof", 'highlight-blue');
+            highlightInstances("Datasets", 'highlight-methods');
+            highlightInstances("Build", 'highlight-methods');
+            highlightInstances("Add", 'highlight-methods');
+            highlightInstances("SaveAsFile", 'highlight-methods');
+            highlightInstances("ToString", 'highlight-methods');
+           
+            // Add more classes as needed
+        });
+
+        function highlightInstances(className, highlightClassName = 'highlight') {
+            // Get all code elements
+            var codeElements = document.querySelectorAll('code');
+
+            // Iterate through each code block
+            codeElements.forEach(function (codeElement) {
+                // Use regex to find and highlight instances of the class
+                var regex = new RegExp("\\b" + className + "\\b", "g");
+                codeElement.innerHTML = codeElement.innerHTML.replace(regex, `<span class="${highlightClassName}">${className}</span>`);
+            });
+        }
+
+
+        function highlightStringLiterals() {
+            // Get all code elements
+            var codeElements = document.querySelectorAll('code');
+
+            // Iterate through each code block
+            codeElements.forEach(function (codeElement) {
+                // Use regex to find and highlight string literals in double quotes
+                var stringLiteralRegex = /(["])([^"]*)(["])/g;
+                codeElement.innerHTML = codeElement.innerHTML.replace(stringLiteralRegex, '<span class="highlight-string">$1$2$3</span>');
+
+                // Use regex to find and highlight curly braces
+                var braceRegex = /(\{|\}|\(|\))/g;
+                codeElement.innerHTML = codeElement.innerHTML.replace(braceRegex, '<span class="highlight-brace">$1</span>');
+
+                var dotRegex = /(\.\w+\.)/g;
+                codeElement.innerHTML = codeElement.innerHTML.replace(dotRegex, '<span class="highlight-dot">$1</span>');
+
+                var boldRegex = /( \w+ \= )/g;
+                codeElement.innerHTML = codeElement.innerHTML.replace(boldRegex, '<span style="font-weight:bolder">$1</span>');
+
+                var commentRegex = /(\/\/[^\n]*)/g;
+                codeElement.innerHTML = codeElement.innerHTML.replace(commentRegex, '<span class="highlight-comment">$1</span>');
+
+
+            });
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>
