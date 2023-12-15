@@ -38,33 +38,112 @@
     </nav>
     <div class="container mt-5 pt-5">
         <div class="markdown prose w-full break-words dark:prose-invert light">
-            <h3>Constructors:</h3><h4>
-                <code>CsvBuilder(DataSet dataset)</code>
-            </h4><ul>
+            <p><strong>Class: CsvBuilder</strong></p><p>The <code>CsvBuilder</code> class implements both the <code>ICsvExtractor</code> and <code>ICsvBuilder</code> interfaces, providing comprehensive functionalities for reading, processing, and constructing CSV data. The class offers flexibility in handling various data structures and customizing CSV processing through its properties and methods.</p><p><strong>Constructors:</strong></p><ol><li><p><strong>CsvBuilder()</strong></p><ul><li>Initializes a new instance of the <code>CsvBuilder</code> class with default options, an empty DataSet, and a MemoryStream for data storage.</li></ul></li><li><p><strong>CsvBuilder(DataSet dataset)</strong></p><ul><li>Initializes a new instance of the <code>CsvBuilder</code> class with a provided DataSet, allowing construction based on existing data.</li></ul></li><li><p><strong>CsvBuilder(Options options, params DataTable[] tables)</strong></p><ul><li>Initializes a new instance of the <code>CsvBuilder</code> class with specified options and DataTables, facilitating customized CSV building.</li></ul></li></ol><p><strong>Properties:</strong></p><ol><li><p><strong>ValueRenderEvent (Event):</strong></p><ul><li>Allows subscribing to a delegate event for custom value rendering, providing flexibility during the CSV building process.</li></ul></li><li><p><strong>Options (Options):</strong></p><ul><li>Gets or sets the processing options for CSV data, including skip rows, separators, trimming, header modes, and more.</li></ul></li><li><p><strong>StreamWriter (Private):</strong></p><ul><li>Manages the writing of CSV data into a MemoryStream, ensuring efficient handling of large datasets.</li></ul></li><li><p><strong>ValueParser (Private):</strong></p><ul><li>Represents a delegate for custom value parsing during CSV building.</li></ul></li></ol><p><strong>Methods:</strong></p><ol>
                 <li>
-                    <strong>Description:</strong>
-                    Private constructor that initializes a <code>CsvBuilder</code> object with a given <code>DataSet</code>.
+                    <p><strong>Datasets Methods:</strong></p><ul>
+                        <li>
+                            <code>Datasets(params DataTable[] dataTables):</code>
+                            Creates a CSV builder from an array of DataTables.
+                        </li>
+                        <li>
+                            <code>Datasets(DataSet dataSet):</code>
+                            Creates a CSV builder from a DataSet.
+                        </li>
+                        <li>
+                            <code>Datasets(params List&lt;string&gt;[] rows):</code>
+                            Creates a CSV builder from an array of lists of strings.
+                        </li>
+                        <li>
+                            <code>Datasets(Options options, params List&lt;string&gt;[] rows):</code>
+                            Creates a CSV builder from an array of lists of strings with specified processing options.
+                        </li>
+                    </ul>
                 </li>
-                <li><strong>Parameters:</strong><ul><li><code>dataset</code>: The DataSet containing the data to be processed.</li></ul></li>
-            </ul><h3>Properties:</h3><h4><code>ValueRenderEvent</code> (Event)</h4><ul>
-                <li><strong>Description:</strong> Gets or sets the value rendering event. Must be set before calling the Build method.</li>
-                <li><strong>Type:</strong> <code>event ValueParser?</code></li>
-                <li><strong>Access:</strong> Public</li>
-                <li><strong>Exceptions:</strong> Throws an <code>InvalidOperationException</code> if modified after the <code>Build</code> method is called.</li>
-            </ul><h3>Methods:</h3><h4><code>public static ICsvBuilder Datasets(params DataTable[] dataTables)</code></h4><ul>
-                <li><strong>Description:</strong> Static factory method to create an instance of <code>CsvBuilder</code> from an array of DataTables.</li>
-                <li><strong>Parameters:</strong><ul><li><code>dataTables</code>: Array of DataTable objects.</li></ul></li>
-                <li><strong>Returns:</strong> An instance of <code>ICsvBuilder</code>.</li>
-            </ul><h4><code>public static ICsvBuilder Datasets(params List&lt;string&gt;[] rows)</code></h4><ul>
-                <li><strong>Description:</strong> Static factory method to create an instance of <code>CsvBuilder</code> from an array of string lists.</li>
-                <li><strong>Parameters:</strong><ul><li><code>rows</code>: Array of string lists.</li></ul></li>
-                <li><strong>Returns:</strong> An instance of <code>ICsvBuilder</code>.</li>
-            </ul><h4><code>public ICsvExtractor Build(params int[] columnsTobePresentedForTableIndex)</code></h4><ul>
-                <li><strong>Description:</strong> Constructs the CSV data based on the provided <code>DataSet</code> and optional array of column indices.</li>
-                <li><strong>Parameters:</strong><ul><li><code>columnsTobePresentedForTableIndex</code>: Optional array of column indices to be included.</li></ul></li>
-                <li><strong>Returns:</strong> An instance of <code>ICsvExtractor</code>.</li>
-                <li><strong>Exceptions:</strong> Throws an <code>InvalidOperationException</code> if <code>ValueRenderEvent</code> is modified after the <code>Build</code> method is called.</li>
-            </ul><h4><code>public void Dispose()</code></h4><ul><li><strong>Description:</strong> Releases resources. Disposes of the <code>MemoryStream</code>.</li></ul><h4><code>public MemoryStream GetStream()</code></h4><ul><li><strong>Description:</strong> Gets the <code>MemoryStream</code> containing the CSV data after flushing the <code>StreamWriter</code>.</li><li><strong>Returns:</strong> The <code>MemoryStream</code>.</li></ul><h4><code>public void SaveAsFile(string filePath)</code></h4><ul><li><strong>Description:</strong> Saves the CSV data to a file specified by the given file path.</li><li><strong>Parameters:</strong><ul><li><code>filePath</code>: The path where the CSV data will be saved.</li></ul></li></ul>
+                <li>
+                    <p><strong>Build Method:</strong></p><ul>
+                        <li>
+                            <code>Build(params int[] columnsTobePresentedForTableIndex):</code>
+                            Constructs the CSV data based on provided options and columns to be presented, allowing for customization.
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>Stream Handling Methods:</strong></p><ul>
+                        <li>
+                            <code>GetStream():</code>
+                            Retrieves the CSV data as a MemoryStream for further processing or storage.
+                        </li>
+                        <li>
+                            <code>SaveAsFile(string filePath):</code>
+                            Saves the CSV data to a file specified by the provided file path.
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>Read Methods:</strong></p><ul>
+                        <li>
+                            <code>ReadFile(string filePath, Options options):</code>
+                            Reads CSV data from a file with specified processing options.
+                        </li>
+                        <li>
+                            <code>ReadFileTill(string filePath, Func&lt;ReadCriteria, bool&gt; readTillCriteria, Options options):</code>
+                            Reads a CSV file until a user-defined condition is met, providing dynamic extraction capabilities.
+                        </li>
+                        <li>
+                            <code>ReadExcelFileToCsv(string excelFilePath):</code>
+                            Converts the contents of an Excel file to a CSV extractor.
+                        </li>
+                        <li>
+                            <code>ReadFromText(string csv):</code>
+                            Creates a CSV extractor from a CSV-formatted string without specific processing options.
+                        </li>
+                        <li>
+                            <code>ReadFromText(string csvData, Options options):</code>
+                            Creates a CSV extractor from a CSV-formatted string with specified processing options.
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>Data Manipulation Methods:</strong></p><ul>
+                        <li>
+                            <code>SetValue&lt;T&gt;(int columnNumber, int rowNumber, T value):</code>
+                            Sets the value at a specified column and row in the CSV data.
+                        </li>
+                        <li>
+                            <code>GetValue&lt;T&gt;(int columnNumber, int rowNumber):</code>
+                            Retrieves the value at a specified column and row in the CSV data.
+                        </li>
+                        <li>
+                            <code>GetRowValues(int rowNumber):</code>
+                            Retrieves all values in a specified row.
+                        </li>
+                        <li>
+                            <code>SetRow(int rowNumber, object[] values):</code>
+                            Sets all values in a specified row.
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>ToDataTables Methods:</strong></p><ul>
+                        <li>
+                            <code>ToDataTables(params StartEndCriteria[] startAndEndCriterias):</code>
+                            Converts CSV data into DataTables based on start and end criteria.
+                        </li>
+                        <li>
+                            <code>ToDataTables(bool skipMatchCriteriaValue, params StartEndCriteria[] startAndEndCriterias):</code>
+                            Converts CSV data into DataTables based on start and end criteria, with an option to skip matching criteria values.
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>ToString Method Override:</strong></p><ul>
+                        <li>
+                            <code>ToString():</code>
+                            Returns a string representation of the CSV extractor, allowing easy inspection of the current state.
+                        </li>
+                    </ul>
+                </li>
+            </ol><p><strong>Event Handling:</strong></p><ul><li>The <code>ValueRenderEvent</code> event allows users to subscribe to a delegate for custom value rendering, enhancing flexibility during the CSV building process.</li></ul><p><strong>Memory Management:</strong></p><ul><li>Implements the <code>IDisposable</code> interface for proper resource cleanup, ensuring efficient memory handling.</li></ul><p><strong>Optimizations:</strong></p><ul><li>The class incorporates optimizations for improved performance and efficiency across various methods.</li></ul>
         </div>
     </div>
     <footer class="mt-5">
