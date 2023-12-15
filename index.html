@@ -1,10 +1,9 @@
-
-<!-- saved from url=(0033)http://localhost:53055/index.html -->
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
+<html>
+<head>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>CSV Builder </title>
-     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"> 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <style>
         body {
             font-family: Arial
@@ -94,30 +93,30 @@
 
     <nav class="navbar navbar-expand-lg fixed-top" style="background-color: #e3f2fd;">
         <div class="container">
-             <a class="navbar-brand" href="#"><img src="csv-icon.png" width="40" /> CSVBuilder</a>
+            <a class="navbar-brand" href="#"><img src="csv-icon.png" width="40" /> CSVBuilder</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="http://localhost:53055/index.html">Examples</a>
+                        <a class="nav-link active" aria-current="page" href="index.html">Examples</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="http://localhost:53055/csv-description.html">Documentation</a>
+                        <a class="nav-link" href="csv-description.html">Documentation</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" target="_blank" href="https://www.nuget.org/packages/GoWorkPro.CSVBuilder/">Installation</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-warning" href="http://localhost:53055/donate-us.html">Donate Us</a>
+                        <a class="nav-link text-warning" href="donate-us.html">Donate Us</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-info" href="https://goworkpro.github.io/Excel-Builder-Utility/" target="_blank">See ExcelBuilder Library</a>
                     </li>
                 </ul>
                 <span class="navbar-text">
-                    by &nbsp;<a target="_blank" class="text-primary text-decoration-none fw-bold" href="https://goworkpro.com/">GoWorkPro</a>
+                    by &nbsp;<a target="_blank" class="text-primary text-decoration-none fw-bold" href="https://goworkpro.com">GoWorkPro</a>
                 </span>
             </div>
         </div>
@@ -127,94 +126,94 @@
         <h1>Example #1</h1>
         <p>Creating CSV using  Custom Rows </p>
         <code class="code">
-            <span class="highlight-blue">using</span><span class="highlight-brace">(</span><span class="highlight-blue">var</span><span style="font-weight:bolder"> csvBuilder = </span><span class="highlight">CsvBuilder</span>.<span class="highlight-methods">Datasets</span><span class="highlight-brace">(</span>
-            <span class="highlight-blue">new</span> <span class="highlight">List</span><string>
-                <span class="highlight-brace">{</span> <span class="highlight-string">"SR."</span>, <span class="highlight-string">"Name"</span>, <span class="highlight-string">"Gender"</span>,<span class="highlight-string">"Phone Number"</span> <span class="highlight-brace">}</span>, <span class="highlight-blue">new</span> <span class="highlight">List</span><string>
-                    <span class="highlight-brace">{</span> <span class="highlight-string">"1"</span>, <span class="highlight-string">"Test Test"</span> <span class="highlight-brace">}</span>, <span class="highlight-blue">new</span> <span class="highlight">List</span><string>
-                        <span class="highlight-brace">{</span> <span class="highlight-string">"2"</span>, <span class="highlight-string">"Test Male 1"</span>, <span class="highlight-string">"Male"</span> <span class="highlight-brace">}</span>, <span class="highlight-blue">new</span> <span class="highlight">List</span><string>
-                            <span class="highlight-brace">{</span> <span class="highlight-string">"2"</span>, <span class="highlight-string">"Test Female 1"</span>, <span class="highlight-string">"Female"</span>,<span class="highlight-string">"+09298374"</span> <span class="highlight-brace">}</span><span class="highlight-brace">)</span>.<span class="highlight-methods">Build</span><span class="highlight-brace">(</span><span class="highlight-brace">)</span><span class="highlight-brace">)</span><span class="highlight-brace">{</span>
-                            &nbsp;&nbsp;   csvBuilder.<span class="highlight-methods">SaveAsFile</span><span class="highlight-brace">(</span><span class="highlight-string">"Greate.csv"</span><span class="highlight-brace">)</span>;
-                            <span class="highlight-brace">}</span>
-        </string></string></string></string></code>
+            using(var csvBuilder = CsvBuilder.Datasets(
+            new List<string>
+                { "SR.", "Name", "Gender","Phone Number" }, new List<string>
+                    { "1", "Test Test" }, new List<string>
+                        { "2", "Test Male 1", "Male" }, new List<string>
+                            { "2", "Test Female 1", "Female","+09298374" }).Build()){
+                            &nbsp;&nbsp;   csvBuilder.SaveAsFile("Greate.csv");
+                            }
+        </code>
 
         <ol>
             <li>
-                <p><strong><code><span class="highlight">CsvBuilder</span>.<span class="highlight-methods">Datasets</span><span class="highlight-brace">(</span>...<span class="highlight-brace">)</span></code></strong>: This is a static factory method of the <code><span class="highlight">CsvBuilder</span></code> class. It creates an instance of <code><span class="highlight">CsvBuilder</span></code> using the provided data. The data is passed as lists of strings, where each list represents a row in the CSV. The first list is assumed to contain the header/column names.</p>
+                <p><strong><code>CsvBuilder.Datasets(...)</code></strong>: This is a static factory method of the <code>CsvBuilder</code> class. It creates an instance of <code>CsvBuilder</code> using the provided data. The data is passed as lists of strings, where each list represents a row in the CSV. The first list is assumed to contain the header/column names.</p>
             </li>
-            <li><p><strong><code><span class="highlight-blue">using</span> <span class="highlight-brace">(</span>...<span class="highlight-brace">)</span></code></strong>: The <code><span class="highlight-blue">using</span></code> statement is used to ensure that the <code>csvBuilder</code> object is properly disposed of when it goes out of scope. This is important because the <code><span class="highlight">CsvBuilder</span></code> class implements <code>IDisposable</code> and works with resources (a <code>MemoryStream</code> in this case). The <code><span class="highlight-blue">using</span></code> statement ensures that the <code>Dispose</code> method is called when the block is exited, releasing any resources held by <code>csvBuilder</code>.</p></li>
-            <li><p><strong><code>csvBuilder.<span class="highlight-methods">Build</span><span class="highlight-brace">(</span><span class="highlight-brace">)</span></code></strong>: This method is called on the <code>csvBuilder</code> instance to construct the CSV data. It takes an optional array of column indices to be included in the CSV. In this case, no specific columns are selected, so it includes all columns.</p></li>
-            <li><p><strong><code>csvBuilder.<span class="highlight-methods">SaveAsFile</span><span class="highlight-brace">(</span><span class="highlight-string">"Great.csv"</span><span class="highlight-brace">)</span></code></strong>: This method is called to save the generated CSV data to a file named "Great.csv". The <code><span class="highlight-methods">SaveAsFile</span></code> method takes a file path as a parameter.</p></li>
+            <li><p><strong><code>using (...)</code></strong>: The <code>using</code> statement is used to ensure that the <code>csvBuilder</code> object is properly disposed of when it goes out of scope. This is important because the <code>CsvBuilder</code> class implements <code>IDisposable</code> and works with resources (a <code>MemoryStream</code> in this case). The <code>using</code> statement ensures that the <code>Dispose</code> method is called when the block is exited, releasing any resources held by <code>csvBuilder</code>.</p></li>
+            <li><p><strong><code>csvBuilder.Build()</code></strong>: This method is called on the <code>csvBuilder</code> instance to construct the CSV data. It takes an optional array of column indices to be included in the CSV. In this case, no specific columns are selected, so it includes all columns.</p></li>
+            <li><p><strong><code>csvBuilder.SaveAsFile("Great.csv")</code></strong>: This method is called to save the generated CSV data to a file named "Great.csv". The <code>SaveAsFile</code> method takes a file path as a parameter.</p></li>
         </ol>
 
         <h1>Example #2</h1>
         <p>Creating three DataTable instances (dataTableFilter, companyInfo, and actualDataset), populating them with data, and then using the CsvBuilder class to generate and save a CSV file. Let's break down the code:</p>
         <code class="code">
-            <span class="highlight">DataTable</span><span style="font-weight:bolder"> dataTableFilter = </span><span class="highlight-blue">new</span> <span class="highlight">DataTable</span><span class="highlight-brace">(</span><span class="highlight-string">"SampleDataFilters"</span><span class="highlight-brace">)</span>;
-            <span class="highlight-comment">//<span class="highlight-methods">Add</span> the column names</span>
-            dataTableFilter<span class="highlight-dot">.Columns.</span><span class="highlight-methods">Add</span><span class="highlight-brace">(</span><span class="highlight-string">"column1"</span>, <span class="highlight-blue">typeof</span><span class="highlight-brace">(</span>string<span class="highlight-brace">)</span><span class="highlight-brace">)</span>;
+            DataTable dataTableFilter = new DataTable("SampleDataFilters");
+            //Add the column names
+            dataTableFilter.Columns.Add("column1", typeof(string));
 
-            dataTableFilter<span class="highlight-dot">.Rows.</span><span class="highlight-methods">Add</span><span class="highlight-brace">(</span><span class="highlight-string">"All Customers"</span><span class="highlight-brace">)</span>;
-            dataTableFilter<span class="highlight-dot">.Rows.</span><span class="highlight-methods">Add</span><span class="highlight-brace">(</span><span class="highlight-string">"Search Filter"</span><span class="highlight-brace">)</span>;
-            dataTableFilter<span class="highlight-dot">.Rows.</span><span class="highlight-methods">Add</span><span class="highlight-brace">(</span><span class="highlight-string">"Customer Type: All"</span><span class="highlight-brace">)</span>;
-            dataTableFilter<span class="highlight-dot">.Rows.</span><span class="highlight-methods">Add</span><span class="highlight-brace">(</span><span class="highlight-string">"Customer Status: Active"</span><span class="highlight-brace">)</span>;
-            dataTableFilter<span class="highlight-dot">.Rows.</span><span class="highlight-methods">Add</span><span class="highlight-brace">(</span><span class="highlight-string">"From: 03 - 01 - 2022 To: 03 - 11 - 2023"</span><span class="highlight-brace">)</span>;
+            dataTableFilter.Rows.Add("All Customers");
+            dataTableFilter.Rows.Add("Search Filter");
+            dataTableFilter.Rows.Add("Customer Type: All");
+            dataTableFilter.Rows.Add("Customer Status: Active");
+            dataTableFilter.Rows.Add("From: 03 - 01 - 2022 To: 03 - 11 - 2023");
 
-            <span class="highlight">DataTable</span><span style="font-weight:bolder"> companyInfo = </span><span class="highlight-blue">new</span> <span class="highlight">DataTable</span><span class="highlight-brace">(</span><span class="highlight-string">"company"</span><span class="highlight-brace">)</span>;
-            <span class="highlight-comment">//<span class="highlight-methods">Add</span> the column names</span>
-            companyInfo<span class="highlight-dot">.Columns.</span><span class="highlight-methods">Add</span><span class="highlight-brace">(</span><span class="highlight-string">"column1"</span>, <span class="highlight-blue">typeof</span><span class="highlight-brace">(</span>string<span class="highlight-brace">)</span><span class="highlight-brace">)</span>;
-            companyInfo<span class="highlight-dot">.Rows.</span><span class="highlight-methods">Add</span><span class="highlight-brace">(</span><span class="highlight-string">"London"</span><span class="highlight-brace">)</span>;
-            companyInfo<span class="highlight-dot">.Rows.</span><span class="highlight-methods">Add</span><span class="highlight-brace">(</span><span class="highlight-string">"Add01a, City"</span><span class="highlight-brace">)</span>;
-            companyInfo<span class="highlight-dot">.Rows.</span><span class="highlight-methods">Add</span><span class="highlight-brace">(</span><span class="highlight-string">"London, sef83n"</span><span class="highlight-brace">)</span>;
-            companyInfo<span class="highlight-dot">.Rows.</span><span class="highlight-methods">Add</span><span class="highlight-brace">(</span><span class="highlight-string">"T: +441234567890"</span><span class="highlight-brace">)</span>;
-            companyInfo<span class="highlight-dot">.Rows.</span><span class="highlight-methods">Add</span><span class="highlight-brace">(</span><span class="highlight-string">"E:"</span><span class="highlight-brace">)</span>;
+            DataTable companyInfo = new DataTable("company");
+            //Add the column names
+            companyInfo.Columns.Add("column1", typeof(string));
+            companyInfo.Rows.Add("London");
+            companyInfo.Rows.Add("Add01a, City");
+            companyInfo.Rows.Add("London, sef83n");
+            companyInfo.Rows.Add("T: +441234567890");
+            companyInfo.Rows.Add("E:");
 
 
 
-            <span class="highlight">DataTable</span><span style="font-weight:bolder"> actualDataset = </span><span class="highlight-blue">new</span> <span class="highlight">DataTable</span><span class="highlight-brace">(</span><span class="highlight-string">"SampleDataActual"</span><span class="highlight-brace">)</span>;
+            DataTable actualDataset = new DataTable("SampleDataActual");
 
-            actualDataset<span class="highlight-dot">.Columns.</span><span class="highlight-methods">Add</span><span class="highlight-brace">(</span><span class="highlight-string">"Sr."</span>, <span class="highlight-blue">typeof</span><span class="highlight-brace">(</span><span class="highlight-blue">int</span><span class="highlight-brace">)</span><span class="highlight-brace">)</span>;
-            actualDataset<span class="highlight-dot">.Columns.</span><span class="highlight-methods">Add</span><span class="highlight-brace">(</span><span class="highlight-string">"Branch"</span>, <span class="highlight-blue">typeof</span><span class="highlight-brace">(</span>string<span class="highlight-brace">)</span><span class="highlight-brace">)</span>;
-            actualDataset<span class="highlight-dot">.Columns.</span><span class="highlight-methods">Add</span><span class="highlight-brace">(</span><span class="highlight-string">"Branch Code"</span>, <span class="highlight-blue">typeof</span><span class="highlight-brace">(</span><span class="highlight-blue">int</span><span class="highlight-brace">)</span><span class="highlight-brace">)</span>;
-            actualDataset<span class="highlight-dot">.Columns.</span><span class="highlight-methods">Add</span><span class="highlight-brace">(</span><span class="highlight-string">"Name"</span>, <span class="highlight-blue">typeof</span><span class="highlight-brace">(</span>string<span class="highlight-brace">)</span><span class="highlight-brace">)</span>;
-            actualDataset<span class="highlight-dot">.Columns.</span><span class="highlight-methods">Add</span><span class="highlight-brace">(</span><span class="highlight-string">"Email"</span>, <span class="highlight-blue">typeof</span><span class="highlight-brace">(</span>string<span class="highlight-brace">)</span><span class="highlight-brace">)</span>;
-            actualDataset<span class="highlight-dot">.Columns.</span><span class="highlight-methods">Add</span><span class="highlight-brace">(</span><span class="highlight-string">"Mobile"</span>, <span class="highlight-blue">typeof</span><span class="highlight-brace">(</span>long<span class="highlight-brace">)</span><span class="highlight-brace">)</span>;
-            actualDataset<span class="highlight-dot">.Columns.</span><span class="highlight-methods">Add</span><span class="highlight-brace">(</span><span class="highlight-string">"Membership Created Date"</span>, <span class="highlight-blue">typeof</span><span class="highlight-brace">(</span>string<span class="highlight-brace">)</span><span class="highlight-brace">)</span>;
+            actualDataset.Columns.Add("Sr.", typeof(int));
+            actualDataset.Columns.Add("Branch", typeof(string));
+            actualDataset.Columns.Add("Branch Code", typeof(int));
+            actualDataset.Columns.Add("Name", typeof(string));
+            actualDataset.Columns.Add("Email", typeof(string));
+            actualDataset.Columns.Add("Mobile", typeof(long));
+            actualDataset.Columns.Add("Membership Created Date", typeof(string));
 
-            actualDataset<span class="highlight-dot">.Rows.</span><span class="highlight-methods">Add</span><span class="highlight-brace">(</span>1, <span class="highlight-string">"Branch 1"</span>, 82, <span class="highlight-string">"Alex Will"</span>, <span class="highlight-string">"Alw@yopmail.com"</span>, 44578963219, <span class="highlight-string">"18<span class="highlight-dot">.02.</span>2022 - 11:00AM"</span><span class="highlight-brace">)</span>;
-            actualDataset<span class="highlight-dot">.Rows.</span><span class="highlight-methods">Add</span><span class="highlight-brace">(</span>2, <span class="highlight-string">"Branch 1"</span>, 82, <span class="highlight-string">"eqw Will"</span>, <span class="highlight-string">"eqw@yopmail.com"</span>, 4324, <span class="highlight-string">"18<span class="highlight-dot">.02.</span>2022 - 11:00AM"</span><span class="highlight-brace">)</span>;
-            actualDataset<span class="highlight-dot">.Rows.</span><span class="highlight-methods">Add</span><span class="highlight-brace">(</span>3, <span class="highlight-string">"Branch 1"</span>, 82, <span class="highlight-string">"eqw Will"</span>, <span class="highlight-string">"32@yopmail.com"</span>, 4455353478963219, <span class="highlight-string">"18<span class="highlight-dot">.02.</span>2022 - 11:00AM"</span><span class="highlight-brace">)</span>;
+            actualDataset.Rows.Add(1, "Branch 1", 82, "Alex Will", "Alw@yopmail.com", 44578963219, "18.02.2022 - 11:00AM");
+            actualDataset.Rows.Add(2, "Branch 1", 82, "eqw Will", "eqw@yopmail.com", 4324, "18.02.2022 - 11:00AM");
+            actualDataset.Rows.Add(3, "Branch 1", 82, "eqw Will", "32@yopmail.com", 4455353478963219, "18.02.2022 - 11:00AM");
 
-            <span class="highlight-blue">using</span> <span class="highlight-brace">(</span><span class="highlight-blue">var</span><span style="font-weight:bolder"> csvBuilder = </span><span class="highlight">CsvBuilder</span>.<span class="highlight-methods">Datasets</span><span class="highlight-brace">(</span>dataTableFilter, companyInfo, actualDataset<span class="highlight-brace">)</span>.<span class="highlight-methods">Build</span><span class="highlight-brace">(</span>2<span class="highlight-brace">)</span><span class="highlight-brace">)</span>
-            <span class="highlight-brace">{</span>
-            &nbsp;&nbsp;csvBuilder.<span class="highlight-methods">SaveAsFile</span><span class="highlight-brace">(</span><span class="highlight-string">"Greate.csv"</span><span class="highlight-brace">)</span>;
-            <span class="highlight-brace">}</span>
+            using (var csvBuilder = CsvBuilder.Datasets(dataTableFilter, companyInfo, actualDataset).Build(2))
+            {
+            &nbsp;&nbsp;csvBuilder.SaveAsFile("Greate.csv");
+            }
         </code>
         <ol>
-            <li><p><strong><code><span class="highlight">DataTable</span></code> Creation and Population</strong>: You create three <code><span class="highlight">DataTable</span></code> instances (<code>dataTableFilter</code>, <code>companyInfo</code>, and <code>actualDataset</code>) and add columns and rows to them.</p></li>
-            <li><p><strong><code><span class="highlight">CsvBuilder</span>.<span class="highlight-methods">Datasets</span><span class="highlight-brace">(</span>...<span class="highlight-brace">)</span></code></strong>: You use the <code><span class="highlight">CsvBuilder</span></code> class to create an instance and pass the three <code><span class="highlight">DataTable</span></code> instances as parameters.</p></li>
-            <li><p><strong><code>.<span class="highlight-methods">Build</span><span class="highlight-brace">(</span>2<span class="highlight-brace">)</span></code></strong>: You call the <code><span class="highlight-methods">Build</span></code> method on the <code><span class="highlight">CsvBuilder</span></code> instance, specifying that only the columns with index 2 should be included in the CSV.</p></li>
+            <li><p><strong><code>DataTable</code> Creation and Population</strong>: You create three <code>DataTable</code> instances (<code>dataTableFilter</code>, <code>companyInfo</code>, and <code>actualDataset</code>) and add columns and rows to them.</p></li>
+            <li><p><strong><code>CsvBuilder.Datasets(...)</code></strong>: You use the <code>CsvBuilder</code> class to create an instance and pass the three <code>DataTable</code> instances as parameters.</p></li>
+            <li><p><strong><code>.Build(2)</code></strong>: You call the <code>Build</code> method on the <code>CsvBuilder</code> instance, specifying that only the columns with index 2 should be included in the CSV.</p></li>
             <li>
-                <p><strong><code>csvBuilder.<span class="highlight-methods">SaveAsFile</span><span class="highlight-brace">(</span><span class="highlight-string">"Great.csv"</span><span class="highlight-brace">)</span></code></strong>: You save the generated CSV data to a file named "Great.csv".</p>
+                <p><strong><code>csvBuilder.SaveAsFile("Great.csv")</code></strong>: You save the generated CSV data to a file named "Great.csv".</p>
             </li>
         </ol>
 
         <h1>Example #3</h1>
 
         <code class="code">
-            <span class="highlight-blue">var</span><span style="font-weight:bolder"> builder = </span><span class="highlight">CsvBuilder</span>.<span class="highlight-methods">Datasets</span><span class="highlight-brace">(</span>filters, companyInformation, actualDataSet, calculationDataset<span class="highlight-brace">)</span>;
+            var builder = CsvBuilder.Datasets(filters, companyInformation, actualDataSet, calculationDataset);
 
-            <span class="highlight-comment">// Here, you're creating an instance of the <span class="highlight">CsvBuilder</span> class <span class="highlight-blue">using</span> the <span class="highlight-methods">Datasets</span> method,</span>
-            <span class="highlight-comment">// and you're passing four <span class="highlight">DataTable</span> instances <span class="highlight-brace">(</span>filters, companyInformation, actualDataSet,</span>
-            <span class="highlight-comment">// and calculationDataset<span class="highlight-brace">)</span> as parameters.</span>
+            // Here, you're creating an instance of the CsvBuilder class using the Datasets method,
+            // and you're passing four DataTable instances (filters, companyInformation, actualDataSet,
+            // and calculationDataset) as parameters.
 
-            builder.ValueRenderEvent += <span class="highlight-brace">(</span>val, type, column, row, tableIndex, actualRowNumber<span class="highlight-brace">)</span> =&gt;
-            <span class="highlight-brace">{</span>
-            <span class="highlight-blue">if</span> <span class="highlight-brace">(</span>tableIndex == 2 &amp;&amp; column == 1 &amp;&amp; row &gt;= 2<span class="highlight-brace">)</span>
-            <span class="highlight-brace">{</span>
-            &nbsp;&nbsp; <span class="highlight-blue">return</span> <span class="highlight-brace">(</span>row - 1<span class="highlight-brace">)</span>.<span class="highlight-methods">ToString</span><span class="highlight-brace">(</span><span class="highlight-brace">)</span>;
-            <span class="highlight-brace">}</span>
-            &nbsp;&nbsp;  <span class="highlight-blue">return</span> $<span class="highlight-string">"\"</span><span class="highlight-brace">{</span>Convert.<span class="highlight-methods">ToString</span><span class="highlight-brace">(</span>val<span class="highlight-brace">)</span>.Replace<span class="highlight-brace">(</span><span class="highlight-string">"\"</span><span class="highlight-string">", "</span>\<span class="highlight-string">"\"</span><span class="highlight-string">"<span class="highlight-brace">)</span><span class="highlight-brace">}</span>\"</span>";
-            <span class="highlight-brace">}</span>;
+            builder.ValueRenderEvent += (val, type, column, row, tableIndex, actualRowNumber) =>
+            {
+            if (tableIndex == 2 && column == 1 && row >= 2)
+            {
+            &nbsp;&nbsp; return (row - 1).ToString();
+            }
+            &nbsp;&nbsp;  return $"\"{Convert.ToString(val).Replace("\"", "\"\"")}\"";
+            };
 
         </code>
 
@@ -225,51 +224,50 @@
             <li>
                 <strong>Event Handler Logic</strong>:<ul>
                     <li>
-                        <code><span class="highlight-blue">if</span> <span class="highlight-brace">(</span>tableIndex == 2 &amp;&amp; column == 1 &amp;&amp; row &gt;= 2<span class="highlight-brace">)</span></code>: This condition checks if the current value belongs to the second table (<code>tableIndex == 2</code>), is in the first column (<code>column == 1</code>), and is not in the header row (<code>row &gt;= 2</code>). If these conditions are met, it returns the modified value <code><span class="highlight-brace">(</span>row - 1<span class="highlight-brace">)</span>.<span class="highlight-methods">ToString</span><span class="highlight-brace">(</span><span class="highlight-brace">)</span></code>. This logic seems to be adjusting the values in the first column for the second table, subtracting 1 from the row number.
+                        <code>if (tableIndex == 2 &amp;&amp; column == 1 &amp;&amp; row &gt;= 2)</code>: This condition checks if the current value belongs to the second table (<code>tableIndex == 2</code>), is in the first column (<code>column == 1</code>), and is not in the header row (<code>row &gt;= 2</code>). If these conditions are met, it returns the modified value <code>(row - 1).ToString()</code>. This logic seems to be adjusting the values in the first column for the second table, subtracting 1 from the row number.
                     </li>
-                    <li><code><span class="highlight-blue">return</span> $<span class="highlight-string">"\"</span><span class="highlight-brace">{</span>Convert.<span class="highlight-methods">ToString</span><span class="highlight-brace">(</span>val<span class="highlight-brace">)</span>.Replace<span class="highlight-brace">(</span><span class="highlight-string">"\"</span><span class="highlight-string">", "</span>\<span class="highlight-string">"\"</span><span class="highlight-string">"<span class="highlight-brace">)</span><span class="highlight-brace">}</span>\"</span>";</code>: For other cases, it returns the original value enclosed in double quotes, and it handles escaping double quotes within the value by replacing them with double double-quotes (<code>\<span class="highlight-string">"\"</span></code>).</li>
+                    <li><code>return $"\"{Convert.ToString(val).Replace("\"", "\"\"")}\"";</code>: For other cases, it returns the original value enclosed in double quotes, and it handles escaping double quotes within the value by replacing them with double double-quotes (<code>\"\"</code>).</li>
                 </ul>
             </li>
         </ul>
-
         <h1>Example #4</h1>
         <p>The code snippet showcases the creation of a CSV builder with custom options and data rows, emphasizing header presence, initial row skipping, and a specialized condition for skipping specific rows. Two distinct data sets are represented in the provided data rows, marked by "start" and "end" identifiers. The resulting CSV extractor is then used to save the generated CSV data to a file named "data.csv."</p>
         <code class="code">
-            <span class="highlight-comment">// Creating a CSV builder with specified options and data rows</span>
-            <span class="highlight-blue">var</span><span style="font-weight:bolder"> extractor = </span><span class="highlight">CsvBuilder</span>.<span class="highlight-methods">Datasets</span><span class="highlight-brace">(</span><span class="highlight-blue">new</span> <span class="highlight-methods">Options</span>
-            <span class="highlight-brace">{</span>
-           <span style="font-weight:bolder"> <span class="highlight">HeaderMode</span> = </span><span class="highlight">HeaderMode</span>.<span class="highlight-methods">HeaderPresent</span>,           <span class="highlight-comment">// Specify that the CSV data has a header</span>
-           <span style="font-weight:bolder"> SkipInitialNumberOfRows = </span>2,                      <span class="highlight-comment">// Skip the first two rows during CSV building</span>
-           <span style="font-weight:bolder"> SkipRow = </span><span class="highlight-brace">(</span>v, rowIndex<span class="highlight-brace">)</span> =&gt; v.<span class="highlight-methods">Contains</span><span class="highlight-brace">(</span><span class="highlight-string">"start"</span><span class="highlight-brace">)</span> || v.<span class="highlight-methods">Contains</span><span class="highlight-brace">(</span><span class="highlight-string">"end"</span><span class="highlight-brace">)</span>
-            <span class="highlight-comment">// Define a custom row skipping condition based on row content</span>
-            <span class="highlight-brace">}</span>,
-            <span class="highlight-comment">// Data rows for building the CSV</span>
-            <span class="highlight-blue">new</span> <span class="highlight">List</span><string>
-                <span class="highlight-brace">{</span> <span class="highlight-string">"start#1"</span> <span class="highlight-brace">}</span>,                      <span class="highlight-comment">// Start of data set #1</span>
-                <span class="highlight-blue">new</span> <span class="highlight">List</span><string>
-                    <span class="highlight-brace">{</span> <span class="highlight-string">"Data"</span>, <span class="highlight-string">"Data2"</span> <span class="highlight-brace">}</span>,                <span class="highlight-comment">// Header row for data set #1</span>
-                    <span class="highlight-blue">new</span> <span class="highlight">List</span><string>
-                        <span class="highlight-brace">{</span> <span class="highlight-string">"Data1"</span>, <span class="highlight-string">"Data21"</span>, <span class="highlight-string">"Data331"</span>, <span class="highlight-string">"Data31"</span> <span class="highlight-brace">}</span>,  <span class="highlight-comment">// Data rows for data set #1</span>
-                        <span class="highlight-blue">new</span> <span class="highlight">List</span><string>
-                            <span class="highlight-brace">{</span> <span class="highlight-string">"end#1"</span> <span class="highlight-brace">}</span>,                        <span class="highlight-comment">// End of data set #1</span>
-                            <span class="highlight-blue">new</span> <span class="highlight">List</span><string>
-                                <span class="highlight-brace">{</span> <span class="highlight-string">"start#2"</span> <span class="highlight-brace">}</span>,                      <span class="highlight-comment">// Start of data set #2</span>
-                                <span class="highlight-blue">new</span> <span class="highlight">List</span><string>
-                                    <span class="highlight-brace">{</span> <span class="highlight-string">"Data1"</span>, <span class="highlight-string">"Data21"</span>, <span class="highlight-string">"Data331"</span>, <span class="highlight-string">"Data31"</span> <span class="highlight-brace">}</span>,  <span class="highlight-comment">// Data rows for data set #2</span>
-                                    <span class="highlight-blue">new</span> <span class="highlight">List</span><string>
-                                        <span class="highlight-brace">{</span> <span class="highlight-string">"Data1"</span>, <span class="highlight-string">"Data21"</span>, <span class="highlight-string">"Data331"</span>, <span class="highlight-string">"Data31"</span> <span class="highlight-brace">}</span>   <span class="highlight-comment">// Data rows for data set #2</span>
-                                        <span class="highlight-brace">)</span>.<span class="highlight-methods">Build</span><span class="highlight-brace">(</span><span class="highlight-brace">)</span>;                                          <span class="highlight-comment">// <span class="highlight-methods">Build</span> the CSV extractor</span>
+            // Creating a CSV builder with specified options and data rows
+            var extractor = CsvBuilder.Datasets(new Options
+            {
+            HeaderMode = HeaderMode.HeaderPresent,           // Specify that the CSV data has a header
+            SkipInitialNumberOfRows = 2,                      // Skip the first two rows during CSV building
+            SkipRow = (v, rowIndex) => v.Contains("start") || v.Contains("end")
+            // Define a custom row skipping condition based on row content
+            },
+            // Data rows for building the CSV
+            new List<string>
+                { "start#1" },                      // Start of data set #1
+                new List<string>
+                    { "Data", "Data2" },                // Header row for data set #1
+                    new List<string>
+                        { "Data1", "Data21", "Data331", "Data31" },  // Data rows for data set #1
+                        new List<string>
+                            { "end#1" },                        // End of data set #1
+                            new List<string>
+                                { "start#2" },                      // Start of data set #2
+                                new List<string>
+                                    { "Data1", "Data21", "Data331", "Data31" },  // Data rows for data set #2
+                                    new List<string>
+                                        { "Data1", "Data21", "Data331", "Data31" }   // Data rows for data set #2
+                                        ).Build();                                          // Build the CSV extractor
 
-                                        <span class="highlight-comment">// Saving the CSV data to a file named <span class="highlight-string">"data.csv"</span></span>
-                                        extractor.<span class="highlight-methods">SaveAsFile</span><span class="highlight-brace">(</span><span class="highlight-string">"data.csv"</span><span class="highlight-brace">)</span>;
+                                        // Saving the CSV data to a file named "data.csv"
+                                        extractor.SaveAsFile("data.csv");
 
-        </string></string></string></string></string></string></string></code>
+        </code>
     </div>
     <footer class="mt-5">
         <div class="navbar navbar-expand-lg bg-body-tertiary p-4">
             <div class="container">
                 <div>
-                    © 2023 <a href="https://goworkpro.com/"> GoWorkPro</a>. All rights reserved. CSVBuilder is a trademark of GoWorkPro. Unauthorized use or reproduction of this software is prohibited.
+                    © 2023 <a href="https://goworkpro.com"> GoWorkPro</a>. All rights reserved. CSVBuilder is a trademark of GoWorkPro. Unauthorized use or reproduction of this software is prohibited.
                 </div>
             </div>
         </div>
@@ -344,6 +342,6 @@
             });
         }
     </script>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-  
-</body></html>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>
